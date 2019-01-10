@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <!-- Angular Material requires Angular.js Libraries -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-animate.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-aria.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-messages.min.js"></script>
+
+  <!-- Angular Material Library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.min.js"></script>
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.min.css">
+<script src="todo.js"></script>
+</head>
+<style>
+    .myInput{
+        width: 400px;
+    }
+    .row1{
+        align-content: center;
+        margin-top: 60px;
+        margin-left: 600px;
+    }
+    .sec1{
+        text-align: left;
+        margin-left: 270px;
+        margin-right: 40px;
+    }
+    .sec2{
+        text-align:center;
+        margin-left: 525px;
+        margin-right: 40px;
+    }
+    .sec3{
+        text-align:right;
+        margin-left: 500px;
+        margin-right: 40px;
+    }
+    </style>
+<body ng-app="myApp" ng-controller="todoCtrl">
+
+
+<div style="text-align: center;">
+<h2>My Todo List</h2>
+
+<form class="row1" layout="row" ng-submit="todoAdd()">
+    <md-input-container class="md-icon-float md-block">
+        <!-- Use floating label instead of placeholder -->
+        <input placeholder="Add New" ng-model="todoInput" class="myInput" type="text">
+      </md-input-container>
+
+      <h1 class="md-title">Pick an item below</h1>
+  <div layout="row">
+    <md-input-container>
+      <label>Items</label>
+      <md-select ng-model="selectedItem" md-selected-text="getSelectedText()">
+        <md-optgroup label="items">
+          <md-option ng-repeat="item in items" ng-value="item">Item {{item}}</md-option>
+        </md-optgroup>
+      </md-select>
+    </md-input-container>
+  </div>
+    <md-button type="submit" class="md-raised md-primary" ng-click="remove()">Add Me</md-button>
+</form>
+<br>
+
+<br>
+
+
+<div ng-repeat="x in todoList">
+    <input type="checkbox" ng-model="x.done"> <span ng-bind="x.todoText"></span>
+</div>
+
+
+<md-button class="md-raised md-primary" style="margin-top: 20px;" ng-click="remove()">Delete</md-button>
+
+<br>
+<br>
+
+
+<div layout="row" class="sections" >
+<div class="sec1" ng-submit="todoAdd()">
+<h2>To Do</h2>
+</div>
+
+<div class="sec2" ng-submit="todoAdd()">
+<h2>On going</h2>
+</div>
+
+<div class="sec3" ng-submit="todoAdd()">
+<h2>Done</h2>
+</div>
+</div>
+
+</div>
+</body>
+</html>
